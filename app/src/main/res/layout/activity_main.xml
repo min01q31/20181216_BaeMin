@@ -17,6 +17,7 @@
         android:orientation="horizontal">
 //가로로 나눌경우 width : 0, 세로로 나눌경우 height : 0
         <LinearLayout
+            android:id="@+id/korBtn"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -32,6 +33,7 @@
                 android:text="한식"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/bunBtn"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -47,6 +49,7 @@
                 android:text="분식"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/jpBtn"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
