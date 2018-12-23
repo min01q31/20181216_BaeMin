@@ -1,11 +1,17 @@
 package kr.tjeit.a20181216_baemin;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.tjeit.a20181216_baemin.datas.Restaurant;
 
 public class RestaurantListActivity extends BaseActivity {
-
+    List<Restaurant> restaurants = new ArrayList<Restaurant>();
     String foodKind;
+    private android.widget.ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +32,21 @@ public class RestaurantListActivity extends BaseActivity {
     public void setValues() {
         foodKind = getIntent().getStringExtra("음식종류");
         setTitle(String.format("%s 배달 가능 식당 목록",foodKind));
+
+        fillRestaurants();
+    }
+
+    private void fillRestaurants() {
+        restaurants.clear();
+        restaurants.add(new Restaurant("도미노","광진구","09:00~22:00"));
+        restaurants.add(new Restaurant("파파존스","성북구","07:00~21:00"));
+        restaurants.add(new Restaurant("도미노피자","도봉구","11:00~24:00"));
+        restaurants.add(new Restaurant("피자헛","강동구","10:00~20:00"));
+
     }
 
     @Override
     public void bindViews() {
-
+        this.listView = (ListView) findViewById(R.id.listView);
     }
 }
