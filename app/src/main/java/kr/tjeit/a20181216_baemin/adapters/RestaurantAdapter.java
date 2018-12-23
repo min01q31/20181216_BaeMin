@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
@@ -38,12 +41,14 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         TextView nameTxt = row.findViewById(R.id.nameTxt);
         TextView addressTxt = row.findViewById(R.id.addressTxt);
         TextView openTimeTxt = row.findViewById(R.id.openTimeTxt);
+        ImageView logoImgView = row.findViewById(R.id.logoImgView);
 
         Restaurant data = mList.get(position);
         nameTxt.setText(data.getName());
         addressTxt.setText(data.getAddress());
         openTimeTxt.setText(data.getOpenTime());
 
+        Glide.with(mContext).load(data.getLogoURL()).into(logoImgView);
         return row;
     }
 }

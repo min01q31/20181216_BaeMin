@@ -1,10 +1,19 @@
 package kr.tjeit.a20181216_baemin;
 
+import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import java.security.Permission;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
     LinearLayout korBtn;
@@ -16,11 +25,13 @@ public class MainActivity extends BaseActivity {
     private LinearLayout jBtn;
     private LinearLayout yaBtn;
     private LinearLayout stewBtn;
+    Button callBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         bindViews();
@@ -79,6 +90,27 @@ public class MainActivity extends BaseActivity {
             }
         };
 
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PermissionListener pl = new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+                        Uri rui = Uri.parse("tel:0101234567");
+                        Intent intent = new Intent(Intent.ACTION_CALL);
+                        mContext.startActivity(intent);
+                    }
+
+                    @Override
+                    public void onPermissionDenied(List<String> deniedPermissions) {
+                        Toast.makeText(mContext, "전화를 걸기위해선 권한 승인이 필요합니다.", Toast.LENGTH_SHORT).show();
+                    }
+                };
+
+                        TedPermission.with(mContext).setPermissionListener(pl).setPermissions(Manifest.permission.CALL_PHONE).check();
+            }
+        });
+
         jpBtn.setOnClickListener(foodKindClickListener);
         bunBtn.setOnClickListener(foodKindClickListener);
         korBtn.setOnClickListener(foodKindClickListener);
@@ -112,5 +144,15 @@ public class MainActivity extends BaseActivity {
         this.jpBtn = (LinearLayout) findViewById(R.id.jpBtn);
         this.bunBtn = (LinearLayout) findViewById(R.id.bunBtn);
         this.korBtn = (LinearLayout) findViewById(R.id.korBtn);
+        this.stewBtn = (LinearLayout) findViewById(R.id.stewBtn);
+        this.yaBtn = (LinearLayout) findViewById(R.id.yaBtn);
+        this.jBtn = (LinearLayout) findViewById(R.id.jBtn);
+        this.chinBtn = (LinearLayout) findViewById(R.id.chinBtn);
+        this.pizzaBtn = (LinearLayout) findViewById(R.id.pizzaBtn);
+        this.cBtn = (LinearLayout) findViewById(R.id.cBtn);
+        this.jpBtn = (LinearLayout) findViewById(R.id.jpBtn);
+        this.bunBtn = (LinearLayout) findViewById(R.id.bunBtn);
+        this.korBtn = (LinearLayout) findViewById(R.id.korBtn);
+        callBtn = findViewById(R.id.callBtn);
     }
 }
