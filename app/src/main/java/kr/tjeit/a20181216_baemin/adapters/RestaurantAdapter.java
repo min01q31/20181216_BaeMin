@@ -43,7 +43,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         nameTxt.setText(data.getName());
         addressTxt.setText(data.getAddress());
         openTimeTxt.setText(data.getOpenTime());
-        
+
         return row;
     }
 }
